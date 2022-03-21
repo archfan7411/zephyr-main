@@ -1,0 +1,101 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://TestLevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=3]
+[ext_resource path="res://Theme.tres" type="Theme" id=4]
+[ext_resource path="res://Chat.gd" type="Script" id=5]
+[ext_resource path="res://ninepatch.png" type="Texture" id=6]
+[ext_resource path="res://ninepatch_hover.png" type="Texture" id=7]
+[ext_resource path="res://ninepatch_clicked.png" type="Texture" id=8]
+[ext_resource path="res://ninepatch_disabled.png" type="Texture" id=9]
+[ext_resource path="res://Squares Bold Free.otf" type="DynamicFontData" id=10]
+[ext_resource path="res://SquaresBold.tres" type="DynamicFont" id=11]
+[ext_resource path="res://ChatInput.gd" type="Script" id=12]
+[ext_resource path="res://ChatHistory.gd" type="Script" id=13]
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 30, 30 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 30, 30 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 30, 30 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 30, 30 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 13
+font_data = ExtResource( 10 )
+
+[sub_resource type="Theme" id=7]
+default_font = SubResource( 5 )
+Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = ExtResource( 11 )
+Button/styles/disabled = SubResource( 6 )
+Button/styles/focus = SubResource( 2 )
+Button/styles/hover = SubResource( 3 )
+Button/styles/normal = SubResource( 4 )
+Button/styles/pressed = null
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[node name="Main" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="Chat" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 432.0
+margin_right = 408.0
+margin_bottom = 640.0
+theme = ExtResource( 4 )
+autowrap = true
+max_lines_visible = 10
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChatInput" type="LineEdit" parent="."]
+visible = false
+margin_left = 16.0
+margin_top = 408.0
+margin_right = 408.0
+margin_bottom = 434.0
+theme = SubResource( 7 )
+custom_styles/read_only = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+caret_blink = true
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChatHistory" type="RichTextLabel" parent="."]
+visible = false
+anchor_bottom = 0.012
+margin_left = 16.0
+margin_top = 432.0
+margin_right = 408.0
+margin_bottom = 632.224
+theme = ExtResource( 4 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spatial" parent="." instance=ExtResource( 1 )]
